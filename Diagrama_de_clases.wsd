@@ -1,0 +1,88 @@
+@startuml 
+
+class Usuario {
+    - idusuario : int
+    - nombre : string 
+    - apellido : string
+    - correo : string 
+    - telefono : string
+}
+
+class Reservas {
+    - idreservas : idusuario
+    - habitacionid : habitacion
+    - usuarioid : usuario
+    - fechaingreso : date
+    - fechasalida : date 
+    - confirmar : boolean
+
+}
+
+class Habitaciones {
+    - idhabitacion : int 
+    - tipohabi : string
+    - estado : string
+}
+
+class Servicioadicional {
+  - idservicioadiconales: int
+  - serviciosid : Servicio
+  - nombre: String
+  - descripcion: String
+  - precio: float
+  - facturaid : factura
+  + añadirAServicio(): void
+  + eliminarDeServicio(): void
+}
+
+class Factura {
+  - idFactura: int
+  - idReserva: Reservas
+  - detalles: String
+  - total: float
+  - Servicioid : Servicio
+  + generarDetalle(): String
+  + enviarFactura(): void
+}
+
+class Detallefactura {
+    iddetalle : int 
+    descripcion : string 
+    facturaid : factura
+}
+
+class Recordatorio {
+  - idRecordatorio: int
+  - idReserva: int
+  - fechaEnvio: Date
+  + enviarRecordatorio(): void
+}
+
+class Consenjeria {
+    idconsejeria : id
+    nombre : string
+    descripcionconse : string
+    precioconse : float
+    reservasid : Reservas
+    Consenjeriaid : Consenjeria
+    + agregar_servicios(): void
+    + confirmar_reserva(): void
+}
+
+class Servicio {
+    - idservicios : int
+    - nombre : string 
+    - descripcion : string
+}
+
+Usuario  --*  Factura 
+Detallefactura -- Servicio
+Factura -- Detallefactura
+Detallefactura -- Reservas
+Habitaciones  -- Reservas  
+Servicio -- Servicioadicional
+Reservas  *--  Recordatorio 
+Servicioadicional -- Consenjeria
+
+@enduml
+

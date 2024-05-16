@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+actor Usuario as User
+actor "Sistema de Gestión de Reservas" as System
+
+rectangle "Gestión de Reservas" {
+    usecase "Ver Reservas" as VerReservas
+    usecase "Administrar Reservas" as AdminReservas
+    usecase "Modificar Reserva" as ModificarReserva
+    usecase "Cancelar Reserva" as CancelarReserva
+    usecase "Generar Factura" as GenerarFactura
+    usecase "Enviar Recordatorio" as EnviarRecordatorio
+    usecase "Servicio de Conserjería" as ServicioConserjeria
+}
+
+User --> VerReservas
+User --> AdminReservas
+User --> ModificarReserva
+User --> CancelarReserva
+User --> GenerarFactura
+User --> EnviarRecordatorio
+User --> ServicioConserjeria
+
+System --> VerReservas
+System --> AdminReservas
+System --> ModificarReserva
+System --> CancelarReserva
+System --> GenerarFactura
+System --> EnviarRecordatorio
+System --> ServicioConserjeria
+
+@enduml

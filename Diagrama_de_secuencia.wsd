@@ -1,0 +1,35 @@
+@startuml 
+
+actor Usuario
+participant "Sistema de Reservas" as SR
+participant Habitaciones
+participant Reservas
+participant Servicioadicional
+participant Factura
+participant Detallefactura
+
+Usuario -> SR: iniciar sesión
+SR -> Usuario: autenticar()
+
+Usuario -> SR: buscar habitación
+SR -> Habitaciones: obtener disponibilidad()
+Habitaciones -> SR: devolver disponibilidad()
+
+Usuario -> SR: seleccionar habitación y hacer reserva
+SR -> Reservas: crear reserva()
+Reservas -> Habitaciones: asignar habitación()
+Habitaciones -> Reservas: confirmación de habitación asignada
+
+Usuario -> SR: añadir servicio adicional
+SR -> Servicioadicional: añadirAServicio()
+Servicioadicional -> SR: confirmación de servicio añadido
+
+Usuario -> SR: confirmar reserva
+SR -> Reservas: confirmar reserva()
+Reservas -> Factura: generar factura()
+
+Factura -> Detallefactura: crear detalle de factura()
+Detallefactura -> Factura: detalle añadido
+Factura -> Usuario: enviar factura()
+
+@enduml
